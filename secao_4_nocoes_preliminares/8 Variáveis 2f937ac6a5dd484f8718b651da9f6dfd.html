@@ -1,0 +1,676 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>8. Variáveis</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2f937ac6-a5dd-484f-8718-b651da9f6dfd" class="page sans"><header><h1 class="page-title">8. Variáveis</h1><p class="page-description"></p></header><div class="page-body"><h1 id="f9fc233a-d9a7-4738-8c80-3fd933e20717" class="">Mas o que é uma variável??</h1><p id="27a74e56-930a-4436-94ec-655969881a81" class="">É uma variável nada mais do que um objeto ou entidade armazenada na memória do computador, que representa um valor ou uma expressão. </p><p id="0bd5160f-4e22-4c86-87da-8eab158c5e60" class="">Chama-se variável pois p valor contido nesse espaço de memória do computador varia com o tempo, não é um valor fixo</p><p id="913811e2-4a39-4ad1-ad0d-f6ef3b6457e2" class="">Quanto uma variável é declarada em um programa, na verdade está definindo e reservando um espaço na memória para armazenar o valor que aquela variável conterá em determinado tempo de execução do programa. </p><p id="9cc2464b-e769-4934-9f09-cb5855dc589b" class="">Nos algoritmos criados para realizar tarefas de computação utilizamos variáveis para manipular dados, por exemplo: </p><ul id="9d5298d4-4bae-4c92-b940-13156cc6a1df" class="bulleted-list"><li style="list-style-type:disc">Nome </li></ul><ul id="c788597e-f212-4dea-a1ef-7c2e91854d04" class="bulleted-list"><li style="list-style-type:disc">Idade</li></ul><ul id="a347fae4-0704-43bb-a70c-b680a5eac117" class="bulleted-list"><li style="list-style-type:disc">Altura</li></ul><ul id="a6bff496-8137-40c4-af88-9283d2583f8c" class="bulleted-list"><li style="list-style-type:disc">peso</li></ul><ul id="e94af062-3a97-49b1-b124-97fb65b84f7a" class="bulleted-list"><li style="list-style-type:disc">data de nascimento </li></ul><ul id="582914c7-6e40-4ca3-b9db-0dbcfaed113c" class="bulleted-list"><li style="list-style-type:disc">sexo</li></ul><ul id="9d46e0aa-c5e3-4666-9d15-6f34332bbb8e" class="bulleted-list"><li style="list-style-type:disc">saldo</li></ul><ul id="3bc72543-c689-4218-9080-57ab1c645007" class="bulleted-list"><li style="list-style-type:disc">e mais</li></ul><p id="ff1702ab-5444-49e1-a476-a4829793ac91" class="">Para otimizar os dados da memória, é armazenado somente um dado na memória.</p><h1 id="c2a9379f-fdbf-4f90-befa-f380876c4b75" class="">Memória</h1><blockquote id="df2545f0-a877-400f-a7f3-8d8420c7efbc" class="">Meio físico para armazenar dados temporariamente ou permanente (TANEBAUM, 1997, P.212)</blockquote><p id="41ccd500-859c-4c0c-8ca4-65220b24a252" class="">Para simplificar, pense na memória como um armário de roupas com várias gavetas. Cada gaveta representa uma variável, e nela são guardados tipos de dados. </p><p id="b175d6f7-2dd6-4711-801e-fc8dabd47422" class="">Cada gaveta armazena apenas um tipo de dado, no nosso caso, roupas, que poderiam ser:</p><ul id="2626a658-d007-48d2-af59-1436c47164b6" class="bulleted-list"><li style="list-style-type:disc">Calças</li></ul><ul id="b797dd96-fdb6-4253-a8bd-a4ed252c86af" class="bulleted-list"><li style="list-style-type:disc">Camisas</li></ul><ul id="bfb206f4-1c22-445e-9e88-ff9a26ce35ca" class="bulleted-list"><li style="list-style-type:disc">Meias</li></ul><ul id="d50a8fe8-443a-4965-ac14-0dd418ef4bac" class="bulleted-list"><li style="list-style-type:disc">Bermudas e mais</li></ul><p id="d398d1e5-9cd5-458e-803b-99ab87fa297f" class="">Logo teríamos uma gaveta apenas para cada tipo de roupas. Apenas para cada tipo de roupa e na gaveta será armazenado só aquele tipo de roupa. </p><p id="8f8bc952-712e-42e7-bed2-dbcb67df58b3" class="">Pense assim: </p><ul id="7639428b-2595-4ceb-a53c-ccf7397ae9ad" class="bulleted-list"><li style="list-style-type:disc">A roupa seria o tipo da variável</li></ul><ul id="9a695447-96b0-4243-9828-48c593db9e49" class="bulleted-list"><li style="list-style-type:disc">A gaveta seria a variável que armazena os dados</li></ul><ul id="d43dc6d3-7df0-460c-aab8-e797634bd881" class="bulleted-list"><li style="list-style-type:disc">E o armário seria a memória do computador</li></ul><hr id="587902d0-1ef7-4774-a3e8-0180d8c90074"/><h1 id="c07520ce-9cc1-4efd-871a-b4bf83eea864" class="">Antes de continuar</h1><p id="342bf0a5-1f05-42b1-a9f3-e573c2d567ea" class="">Precisamos ter em mente o que é um dado, e qual seu conceito.</p><p id="dca3facf-0d00-4a89-81d0-ff43e0bfa619" class="">Um dado em sí, não possui significado relevante e também não conduz a nenhuma compreensão, representando algo que não possui sentido a princípio.</p><p id="eee64be2-63d3-440e-b276-a57ffb439793" class="">Portanto, não tem valor, para poder gerar alguma informação. </p><p id="11ad858b-a662-43fb-9676-f8720410c0b8" class="">Já a informação é a organização dos dados. De forma que vai passar alguma informação.</p><p id="9906c4a4-4785-475d-a235-85570e0fea6e" class="">A informação é o conjunto e a consolidação dos dados de forma a fundamentar o conhecimento. Sendo assim a informação possui valor agregado. </p><figure id="fb578dd7-6e52-47b8-8dc7-c0c20b21b0d1" class="image"><a href="8%20Varia%CC%81veis%202f937ac6a5dd484f8718b651da9f6dfd/Untitled.png"><img style="width:1372px" src="8%20Varia%CC%81veis%202f937ac6a5dd484f8718b651da9f6dfd/Untitled.png"/></a></figure><h1 id="90960913-b073-4b15-8849-0db8968e1d66" class="">Níveis de Abstração</h1><figure id="04f6db65-187a-4905-9769-413556f89418" class="image"><a href="8%20Varia%CC%81veis%202f937ac6a5dd484f8718b651da9f6dfd/Untitled%201.png"><img style="width:1111px" src="8%20Varia%CC%81veis%202f937ac6a5dd484f8718b651da9f6dfd/Untitled%201.png"/></a></figure><p id="4f009a26-db7d-4663-94ba-c0aebd31936a" class="">Com estes conceitos definidos e aproximando-se da maneira como os computadores manipulam as informações, é possível dividi-las em tipos primitivos, que serão os tipos básicos que utilizaremos para trabalhar com algoritmos no Portugol Studio.</p><h1 id="ff5c6888-9cce-4913-80af-635b34beb9e1" class="">Tipos de Dados</h1><h3 id="e02027ae-fb73-4e37-ac41-c32d237f2c86" class="">Tipo Inteiro</h3><p id="894fe7f5-ff20-43e7-b1da-073d6dc3dfe1" class="">São dados numéricos positivos ou negativos, mas somente números inteiros.</p><p id="6e910883-9e35-4a1d-8879-3a7555c3a834" class="">Exemplos: </p><figure id="403769b2-9eb4-4b99-8815-0ed69522e4ab" class="image"><a href="8%20Varia%CC%81veis%202f937ac6a5dd484f8718b651da9f6dfd/Untitled%202.png"><img style="width:1402px" src="8%20Varia%CC%81veis%202f937ac6a5dd484f8718b651da9f6dfd/Untitled%202.png"/></a></figure><h3 id="0bd76e14-adb0-4ebc-b8cc-8f111e1deeec" class="">Tipo Real</h3><p id="a5f2093d-dadf-45b9-b4b1-9580eb7d1d31" class="">Compreende os números inteiros e também os fracionários. Também pode-se dizer que são dados pertencentes ao conjunto numérico reais da matemática. </p><p id="14dbcb69-9053-463a-8229-4aa8bbf662c5" class="">Ex: </p><figure id="70cdb0fb-8d4a-47c2-9620-552f76ec3b19" class="image"><a href="8%20Varia%CC%81veis%202f937ac6a5dd484f8718b651da9f6dfd/Untitled%203.png"><img style="width:1054px" src="8%20Varia%CC%81veis%202f937ac6a5dd484f8718b651da9f6dfd/Untitled%203.png"/></a></figure><h3 id="0bb07b1d-8db2-4b39-b562-4125ebdd6839" class="">Tipo Caractere</h3><p id="281fc256-0942-46a3-9d66-0ce670c6cc8f" class="">É o formato que sempre recebe os caracteres alfanuméricos. E deve sempre estar delimitado por apóstrofes.</p><figure id="2847a766-2ea2-4281-b761-4e13080dfbd5" class="image"><a href="8%20Varia%CC%81veis%202f937ac6a5dd484f8718b651da9f6dfd/Untitled%204.png"><img style="width:1084px" src="8%20Varia%CC%81veis%202f937ac6a5dd484f8718b651da9f6dfd/Untitled%204.png"/></a></figure><h3 id="76be1fa0-6eaf-4d86-8499-95d35f21cc8f" class="">Tipo Cadeia</h3><p id="74db356b-ade0-4e00-a5dc-2391a9c63cbb" class="">Representa uma sequência de caracteres que pode ser constituída de letras, números ou símbolos. O tipo cadeia deve ser acompanhado de aspas dublas. </p><figure id="508ba38e-7565-462d-b1f6-3e59ca58c077" class="image"><a href="8%20Varia%CC%81veis%202f937ac6a5dd484f8718b651da9f6dfd/Untitled%205.png"><img style="width:803px" src="8%20Varia%CC%81veis%202f937ac6a5dd484f8718b651da9f6dfd/Untitled%205.png"/></a></figure><h3 id="bd34b31e-01ad-4f7e-b8d0-42b35b7e641a" class="">Tipo lógico </h3><p id="0c2f6df7-307d-4002-80ed-aca02d8b9b57" class="">Armazena os valores lógicos True e False</p><figure id="7cbc191d-eb1a-4488-a2e4-f708819ff426" class="image"><a href="8%20Varia%CC%81veis%202f937ac6a5dd484f8718b651da9f6dfd/Untitled%206.png"><img style="width:815px" src="8%20Varia%CC%81veis%202f937ac6a5dd484f8718b651da9f6dfd/Untitled%206.png"/></a></figure><h3 id="e4c148ad-859c-487f-909e-323b6a3aac69" class="">Tipo Vazio</h3><p id="330de322-4277-457f-a627-def9a133a52f" class="">Vazio é usado para um resultado que retorna algo, mas que não fornece nenhum resultado. </p><p id="5980ac71-bcca-4dfb-b6aa-b451841f8c37" class="">É um tipo mais complexo de se entender, mas é usado mais para quando estiver fazendo algo que não precisa retornar algo, mas vai retornar. </p><h3 id="7255f035-8ed5-4a42-8b44-ea941d61bda7" class="">Constante</h3><p id="4109c9dd-5ffb-4e56-9768-2212524c4782" class="">Como já discutido anteriormente, o valor de uma variável pode ser modificado ao longo de uma execução de um algoritmo. Mas podem ocorrer casos em que é necessário armazenar valores que não sofram quaisquer alterações ao longo da execução do algoritmo. Neste contexto, surgem as constantes. </p><p id="d36eff46-1867-4c6f-915f-4d087a8bcd96" class="">AS constantes são criadas conforme as regras para criação das variáveis, mas diferentes pelo fato de não alterarem o valor à elas atribuídos, além disso geralmente possuem um escopo global, sendo possível fazer o chamado a partir de qualquer ponto do algoritmo. </p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
