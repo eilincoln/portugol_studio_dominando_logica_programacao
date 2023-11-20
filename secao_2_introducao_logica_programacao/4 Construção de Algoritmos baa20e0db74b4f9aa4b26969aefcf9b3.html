@@ -1,0 +1,676 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>4. Construção de Algoritmos</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="baa20e0d-b74b-4f9a-a4b2-6969aefcf9b3" class="page sans"><header><h1 class="page-title">4. Construção de Algoritmos</h1><p class="page-description"></p></header><div class="page-body"><p id="3e012313-a1c2-47a8-9df7-166179391357" class="">Lógica de programação pode ser definida como um conjunto de técnicas para encadear pensamentos a fim de atingir determinado objetivo. </p><p id="b83ae094-4b15-4bd3-b543-5c4392b1621b" class="">O objetivo fundamental de toda programação é construir <mark class="highlight-yellow">ALGORITMOS</mark></p><h1 id="a252ad08-bead-46c1-8637-6b244d7be955" class="">Mas afinal, o que é um algoritmo?</h1><blockquote id="e6341f14-3fba-4706-abec-e5f68aaa8236" class="">Formalmente, é uma sequência finita de passos que levam a execução de uma tarefa. Podemos pensar em algoritmos como uma receita, uma sequência de instruções que dão cabo de uma meta específica (FORBELLONE ET AL.,2005).</blockquote><p id="f8bbdefc-7981-493b-af65-8b42c5394f3c" class="">Uma sequencia de atividades! </p><h2 id="af341e19-328b-47af-86f3-c0b433c30183" class="">Exemplo: </h2><figure id="4d0e2190-20c5-47a2-89dd-e3ddff058133" class="image"><a href="4%20Construc%CC%A7a%CC%83o%20de%20Algoritmos%20baa20e0db74b4f9aa4b26969aefcf9b3/Untitled.png"><img style="width:1010px" src="4%20Construc%CC%A7a%CC%83o%20de%20Algoritmos%20baa20e0db74b4f9aa4b26969aefcf9b3/Untitled.png"/></a></figure><p id="f459c529-cd8d-45c3-88b5-13d01c3b895a" class="">Uma de várias maneiras de resolver um problema. </p><h1 id="9e289e54-36f7-4bb1-8864-5797f7e3a0e8" class="">Atividade 1:</h1><p id="b395f527-6115-488c-92e5-9a944109cc1f" class="">Escreva um algoritmo (sequência de passos) para trocar um pneu de carro.</p><p id="7db083ee-4b0c-4266-ba53-d4e0559faf90" class="">Sequência de passos para solução:</p><ol type="1" id="6f7dca7f-db49-4916-916a-2fe56814184d" class="numbered-list" start="1"><li>Pegar um pneu novo</li></ol><ol type="1" id="3a2bcd85-9508-4c48-abb5-131ff715a516" class="numbered-list" start="2"><li>Pegar ferramentas</li></ol><ol type="1" id="24b86840-b7a6-4b28-866f-8bde2b2cc66a" class="numbered-list" start="3"><li>Retirar o pneu antigo</li></ol><ol type="1" id="beec7669-9022-4cbc-ba15-0011dab89c05" class="numbered-list" start="4"><li>Colocar o novo</li></ol><h1 id="e42f66b1-2247-418f-b5e2-7e04736ab615" class="">Atividade 2:</h1><p id="3addccf2-2adb-4c4a-8f2c-434fa31c8331" class="">Descreva um algoritmo que defina como fazer um bolo.</p><p id="d2322bd4-e66d-4d8e-ae99-2a9a57e8038e" class="">Sequência de passos para solução:</p><ol type="1" id="24bbe376-973c-435a-a372-2b7a6c5436fc" class="numbered-list" start="1"><li>Esquentar o forno à 200º graus</li></ol><ol type="1" id="a90f1918-74ab-47f1-a712-cd17fe6a42d5" class="numbered-list" start="2"><li>Separar uma forma</li></ol><ol type="1" id="3cb66d87-7bec-4074-a115-54af6d2e8124" class="numbered-list" start="3"><li>Separar os ingredientes</li></ol><ol type="1" id="5720ca8e-b817-4684-bc81-70fc392b7595" class="numbered-list" start="4"><li>Misturar os ingredientes</li></ol><ol type="1" id="0a371348-c262-4aad-a594-3b1414dbd6fd" class="numbered-list" start="5"><li>Colocar na forma separada</li></ol><ol type="1" id="ac14ac09-2ceb-40d6-be00-3feddeedb5fe" class="numbered-list" start="6"><li>Colocar no forno já pré aquecido</li></ol><ol type="1" id="f798f561-c767-469c-a7ca-accb2064bf0a" class="numbered-list" start="7"><li>Esperar o cozimento</li></ol><ol type="1" id="e16df527-99b5-4634-8120-1fe16955bf32" class="numbered-list" start="8"><li>Retirar do formo </li></ol><ol type="1" id="99fef537-f10f-4e29-844d-ca13c473a749" class="numbered-list" start="9"><li>Colocar em um prato bonitinho</li></ol><ol type="1" id="db2c098f-9a13-409c-a628-536e8df7946f" class="numbered-list" start="10"><li>Servir</li></ol><h1 id="d0e6afe5-3a43-446b-8625-06d3d59e1918" class="">Atividade 3:</h1><p id="7e2ac223-8dc9-4f0e-b850-32b4a4a24073" class="">Descreva um algoritmo que defina como preparar um ovo frito.</p><p id="211948c9-4629-4f12-95f2-8ed417b981a6" class="">Sequência de passos para solução:</p><ol type="1" id="2321fc7f-7a14-4117-9ae4-3f7767bb45a4" class="numbered-list" start="1"><li>Separar uma panela para fritar ovos</li></ol><ol type="1" id="0ad8013e-07de-46aa-895b-5b498062ddfe" class="numbered-list" start="2"><li>Separar óleo</li></ol><ol type="1" id="3080b78b-6e20-4f15-a4b8-b2c17bb13228" class="numbered-list" start="3"><li>Separar sal</li></ol><ol type="1" id="cbda6379-e05c-408c-843e-4da7e179b163" class="numbered-list" start="4"><li>Colocar o óleo na panela</li></ol><ol type="1" id="c0d12b50-8dc1-49db-8afa-09c818804f28" class="numbered-list" start="5"><li>Quebrar o ovo </li></ol><ol type="1" id="81769657-e36f-4a08-993f-796cd35a8246" class="numbered-list" start="6"><li>Colocar na panela o ovo quebrado</li></ol><ol type="1" id="4ba8e4d0-ca7f-497f-be93-d89373ba0cab" class="numbered-list" start="7"><li>Esperar fritar o ovo</li></ol><ol type="1" id="faad178e-91f0-46a9-85ab-e8e3f505fdcb" class="numbered-list" start="8"><li>Colocar o ovo já frito em uma panela.</li></ol><ol type="1" id="08a00e2c-aa97-4456-b553-0aabd199764b" class="numbered-list" start="9"><li>Comer</li></ol><ul id="451d24e0-784e-43f0-a952-cc247b93e8f1" class="bulleted-list"><li style="list-style-type:disc">Não existe um jeito certo de fazer, mas sim conseguir resolver o problema.</li></ul><hr id="793906e3-1a66-4642-82e1-9640e8e880db"/><p id="982831c0-0c11-458e-8842-d90c8e6354a4" class="">Algoritmos com estruturas de decisão e de repetição</p><p id="67605e13-aa82-4d38-bf76-af497260acbe" class="">Há algoritmos nos quais a execução de alguns passos podem depender de decisões a serem tomadas. Dessa forma, algum fato indicará se um ou mais passos do algoritmo serão executados ou não.</p><p id="11ad1687-3bcb-4ce8-9c26-2d44cdd2df4c" class="">Testes determinam quais ações serão executadas; são chamados de estruturas de seleção ou estruturas de decisão.</p><p id="d98390cf-d3de-4c59-87ba-517c0e5e315e" class="">Exemplo com condição:</p><figure id="411efed9-e1f5-491f-ac9a-9aafc07eadc2" class="image"><a href="4%20Construc%CC%A7a%CC%83o%20de%20Algoritmos%20baa20e0db74b4f9aa4b26969aefcf9b3/Untitled%201.png"><img style="width:996px" src="4%20Construc%CC%A7a%CC%83o%20de%20Algoritmos%20baa20e0db74b4f9aa4b26969aefcf9b3/Untitled%201.png"/></a></figure><p id="1e7584dd-8104-4b82-a37e-f04c81c72194" class="">Outro exemplo: </p><figure id="48c9dc5f-7460-43c8-bfcb-900cf65d9cc2" class="image"><a href="4%20Construc%CC%A7a%CC%83o%20de%20Algoritmos%20baa20e0db74b4f9aa4b26969aefcf9b3/Untitled%202.png"><img style="width:738px" src="4%20Construc%CC%A7a%CC%83o%20de%20Algoritmos%20baa20e0db74b4f9aa4b26969aefcf9b3/Untitled%202.png"/></a></figure><p id="8098f176-4213-40ff-97a5-93a43db3eb10" class="">Pensando desta forma, até quando ficaríamos nestes testes. </p><p id="40235534-8c49-41d9-8fbc-6552e1503619" class="">Em casos como este que pode se repetir inúmeras vezes e não sabemos quantas vezes irá se repetir é bom usar a estrutura de enquanto.</p><figure id="af6bd16d-b139-4424-9dc6-bae2e9c86edb" class="image"><a href="4%20Construc%CC%A7a%CC%83o%20de%20Algoritmos%20baa20e0db74b4f9aa4b26969aefcf9b3/Untitled%203.png"><img style="width:822px" src="4%20Construc%CC%A7a%CC%83o%20de%20Algoritmos%20baa20e0db74b4f9aa4b26969aefcf9b3/Untitled%203.png"/></a></figure><p id="76c7d81e-4330-4a94-bf1c-f85b05f48470" class="">Podemos usar essa forma para que repita desta forma. </p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
